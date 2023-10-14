@@ -1,7 +1,9 @@
 ﻿namespace MVC
 {
-    public interface IController<T> where T : class
+    public interface IController
     {
-        T Model { get; }
+        object Model { get; }
+
+        T GetModel<T>() where T : class;
     }
 }

@@ -1,0 +1,46 @@
+﻿using System;
+using UnityEngine;
+
+namespace Game
+{
+    public class Character : Entity
+    {
+        public const float MAX_VELOCITY_DEFAULT = 30f;
+
+        public Vector2 Position { get; set; }
+        public float Rotation { get; set; }
+
+        public Vector2 Velocity
+        {
+            get => _velocity;
+            set => _velocity =  Mathf.Clamp(value.magnitude, 0f, MaxVelocity) * value.normalized;
+        }
+
+        public float MaxVelocity { get; set; }
+        public bool IsKilled { get; private set; }
+
+        public event Action OnKill;
+
+        private Vector2 _velocity;
+
+        public Character(Vector2 position = default, float rotation = 0f, Vector2 velocity = default, float maxVelocity = MAX_VELOCITY_DEFAULT)
+        {
+            Position = position;
+            Rotation = rotation;
+            MaxVelocity = maxVelocity;
+            Velocity = velocity;
+        }
+
+        public override void Tick(float dt)
+        {
+            base.Tick(dt);
+            Position += Velocity * dt;
+        }
+
+        public void Kill()
+        {
+            IsKilled = true;
+            OnKill?.Invoke();
+        }
+    }
+}

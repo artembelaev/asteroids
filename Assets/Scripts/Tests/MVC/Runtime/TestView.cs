@@ -2,13 +2,14 @@
 
 namespace Tests.MVC.Editor
 {
-    public class TestView : IView<TestModel>
+    public class TestView : IView
     {
-        public TestModel Model { get; private set; }
+        public object Model { get; private set; }
 
-        public void SetModel(TestModel model)
+        public void SetModel(object model)
         {
             Model = model;
         }
+
     }
 }

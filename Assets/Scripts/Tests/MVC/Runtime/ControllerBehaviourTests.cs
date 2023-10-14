@@ -10,8 +10,8 @@ public class ControllerBehaviourTests
     public void InitModelAndViewBehaviour()
     {
         GameObject obj = new GameObject();
-        IView<TestModel> view = obj.AddComponent<TestViewBehaviour>();
-        IController<TestModel> controller = obj.AddComponent<TestControllerBehaviour>();
+        IView view = obj.AddComponent<TestViewBehaviour>();
+        IController controller = obj.AddComponent<TestControllerBehaviour>();
 
         Assert.NotNull(controller.Model);
         Assert.AreEqual(controller.Model,view.Model);
@@ -22,9 +22,9 @@ public class ControllerBehaviourTests
     {
         GameObject obj = new GameObject();
         // there a no view component on game object
-        IController<TestModel> controller = obj.AddComponent<TestControllerBehaviour>();
+        IController controller = obj.AddComponent<TestControllerBehaviour>();
         // Not behaviour view
-        IView<TestModel> view = new TestView();
+        IView view = new TestView();
 
         view.SetModel(controller.Model);
 

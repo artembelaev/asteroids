@@ -1,9 +1,9 @@
 using MVC;
 using Tests.MVC.Editor;
 
-public class TestControllerBehaviour : ControllerBehaviour<TestModel>
+public class TestControllerBehaviour : ControllerBehaviour
 {
-    protected override TestModel CreateModel()
+    protected override object CreateModel()
     {
         return new TestModel();
     }

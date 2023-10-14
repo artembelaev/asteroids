@@ -1,9 +1,9 @@
 ﻿namespace MVC
 {
-    public interface IView<T> where T : class
+    public interface IView
     {
-        T Model { get; }
-        void SetModel(T model);
+        object Model { get; }
+        void SetModel(object model);
 
     }
 }

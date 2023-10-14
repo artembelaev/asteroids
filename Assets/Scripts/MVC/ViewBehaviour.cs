@@ -2,17 +2,17 @@ using UnityEngine;
 
 namespace MVC
 {
-    public abstract class ViewBehaviour<T> : MonoBehaviour, IView<T> where T : class
+    public abstract class ViewBehaviour: MonoBehaviour, IView
     {
         #region IView<T>
 
-        public T Model
+        public object Model
         {
             get;
             private set;
         }
 
-        public void SetModel(T model)
+        public void SetModel(object model)
         {
             Model = model;
         }

@@ -2,24 +2,29 @@ using UnityEngine;
 
 namespace MVC
 {
-    public abstract class ControllerBehaviour<T> : MonoBehaviour, IController<T> where T : class
+    public abstract class ControllerBehaviour : MonoBehaviour, IController
     {
         #region IController<T>
 
-        public T Model
+        public object Model
         {
             get;
             private set;
         }
 
+        public T GetModel<T>() where T : class
+        {
+            return Model as T;
+        }
+
         #endregion
 
-        protected abstract T CreateModel();
+        protected abstract object CreateModel();
 
         protected virtual void Awake()
         {
             Model = CreateModel();
-            IView<T> view = GetComponent<IView<T>>();
+            IView view = GetComponent<IView>();
             view?.SetModel(Model);
         }
     }
