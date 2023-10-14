@@ -62,4 +62,26 @@ public class CharacterTests
         Assert.IsTrue(killEventFired);
     }
 
+    [Test]
+    public void TestPositionModifier()
+    {
+        Character ch = new Character(position: Vector2.zero, velocity: Vector2.zero);
+        TestPositionModifier modifier = new ()
+        {
+            ModifiedPosition = Vector2.one
+        };
+        ch.AddPositionModifier(modifier);
+
+        ch.Tick(1f);
+
+        Assert.IsTrue(Vector2.Distance(ch.Position, modifier.ModifiedPosition) < DELTA);
+
+        ch.RemovePositionModifier(modifier);
+        Vector2 newPosition = Vector2.up;
+        ch.Position = newPosition;
+        ch.Tick(1f);
+        Assert.IsTrue(Vector2.Distance(ch.Position, newPosition) < DELTA);
+
+    }
+
 }

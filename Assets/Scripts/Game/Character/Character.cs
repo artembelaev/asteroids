@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game
@@ -22,6 +23,7 @@ namespace Game
         public event Action OnKill;
 
         private Vector2 _velocity;
+        private HashSet<IPositionModifier> _modifiers = new ();
 
         public Character(Vector2 position = default, float rotation = 0f, Vector2 velocity = default, float maxVelocity = MAX_VELOCITY_DEFAULT)
         {
@@ -35,12 +37,28 @@ namespace Game
         {
             base.Tick(dt);
             Position += Velocity * dt;
+
+            foreach (IPositionModifier modifier in _modifiers)
+            {
+                Position = modifier.Modify(Position);
+            }
         }
 
         public void Kill()
         {
             IsKilled = true;
             OnKill?.Invoke();
+        }
+
+
+        public void AddPositionModifier(IPositionModifier modifier)
+        {
+            _modifiers.Add(modifier);
+        }
+
+        public void RemovePositionModifier(IPositionModifier modifier)
+        {
+            _modifiers.Remove(modifier);
         }
     }
 }
