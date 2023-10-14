@@ -50,7 +50,6 @@ namespace Game
             OnKill?.Invoke();
         }
 
-
         public void AddPositionModifier(IPositionModifier modifier)
         {
             _modifiers.Add(modifier);
