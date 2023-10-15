@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game
+namespace AsteroidGame
 {
     public interface IPositionModifier
     {

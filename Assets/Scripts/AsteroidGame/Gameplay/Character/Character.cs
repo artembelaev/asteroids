@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game
+namespace AsteroidGame
 {
     public class Character : Entity
     {

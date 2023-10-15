@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using MVC;
 
-namespace Game
+namespace AsteroidGame
 {
     public abstract class EntityControllerBehaviour : ControllerBehaviour
     {

@@ -1,10 +1,10 @@
 {
-    "name": "GameTestEditor",
+    "name": "AsteroidGameTestEditor",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Game"
+        "AsteroidGame"
     ],
     "includePlatforms": [
         "Editor"

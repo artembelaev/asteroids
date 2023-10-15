@@ -1,4 +1,4 @@
-using Game;
+using AsteroidGame;
 using NUnit.Framework;
 using UnityEngine;
 

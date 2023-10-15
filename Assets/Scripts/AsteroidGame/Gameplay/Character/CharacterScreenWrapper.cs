@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Game
+namespace AsteroidGame
 {
     [RequireComponent(typeof(CharacterControllerBehaviour))]
     public class CharacterScreenWrapper : MonoBehaviour, IPositionModifier

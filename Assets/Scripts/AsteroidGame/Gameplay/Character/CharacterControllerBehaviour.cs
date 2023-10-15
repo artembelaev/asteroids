@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game
+namespace AsteroidGame
 {
     public class CharacterControllerBehaviour : EntityControllerBehaviour
     {
@@ -22,10 +22,6 @@ namespace Game
 
         protected override void Update()
         {
-#if UNITY_EDITOR
-            _character.MaxVelocity = _maxVelocity;
-            _character.Velocity = _velocity;
-#endif
             base.Update();
             transform.position = _character.Position;
         }

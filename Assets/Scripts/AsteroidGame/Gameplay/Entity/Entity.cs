@@ -1,4 +1,4 @@
-﻿namespace Game
+﻿namespace AsteroidGame
 {
     public class Entity
     {

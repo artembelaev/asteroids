@@ -1,5 +1,5 @@
 {
-    "name": "Game",
+    "name": "AsteroidGame",
     "rootNamespace": "",
     "references": [
         "GUID:b41e9fd76a35cf741a9b54c87537e848"
