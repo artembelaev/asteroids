@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _velocity: {x: 0, y: 0}
-  _maxVelocity: 30
-  _acceleration: 2.5
-  rotateSpeed: -90
+  _maxVelocity: 10
+  _acceleration: 5
+  _rotationSpeed: -90
 --- !u!114 &3888888710586328300
 MonoBehaviour:
   m_ObjectHideFlags: 0

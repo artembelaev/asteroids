@@ -6,7 +6,7 @@ namespace AsteroidGame
 {
     public class Character : Entity
     {
-        public const float MAX_VELOCITY_DEFAULT = 30f;
+        public const float MAX_VELOCITY_DEFAULT = 10f;
 
         public Vector2 Position { get; set; }
         public float Rotation { get; set; }
