@@ -24,8 +24,11 @@ namespace MVC
         protected virtual void Awake()
         {
             Model = CreateModel();
-            IView view = GetComponent<IView>();
-            view?.SetModel(Model);
+            var views = GetComponents<IView>();
+            foreach (IView view in views)
+            {
+                view.SetModel(Model);
+            }
         }
     }
 }

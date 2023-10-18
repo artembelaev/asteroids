@@ -6,9 +6,11 @@ namespace AsteroidGame
 {
     public class GameInstaller : MonoBehaviour
     {
+        [SerializeField] private PlayerControllerBehaviour _playerControllerPrefab;
         [SerializeField] private AsteroidsFactory _asteroidsFactoryPrefab;
         [SerializeField] private BalanceSettings _balanceSettings;
 
+        private PlayerControllerBehaviour _playerController;
         private AsteroidsFactory _asteroidsFactory;
         private GameStateMachine _fsm;
 
@@ -19,8 +21,14 @@ namespace AsteroidGame
 
         private void Install()
         {
+            InstallPlayer();
             InstallFactory();
             InstallGameStates();
+        }
+
+        private void InstallPlayer()
+        {
+            _playerController = Instantiate(_playerControllerPrefab, transform);
         }
 
         private void InstallFactory()

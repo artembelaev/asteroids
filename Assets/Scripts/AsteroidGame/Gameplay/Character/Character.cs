@@ -36,7 +36,7 @@ namespace AsteroidGame
         public override void Tick(float dt)
         {
             base.Tick(dt);
-            Position += Velocity * dt;
+            UpdatePosition(dt);
 
             foreach (IPositionModifier modifier in _modifiers)
             {
@@ -58,6 +58,11 @@ namespace AsteroidGame
         public void RemovePositionModifier(IPositionModifier modifier)
         {
             _modifiers.Remove(modifier);
+        }
+
+        protected virtual void UpdatePosition(float dt)
+        {
+            Position += Velocity * dt;
         }
     }
 }

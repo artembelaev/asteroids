@@ -4,8 +4,8 @@ namespace AsteroidGame
 {
     public class CharacterControllerBehaviour : EntityControllerBehaviour
     {
-        [SerializeField] private Vector2 _velocity;
-        [SerializeField] private float _maxVelocity = Character.MAX_VELOCITY_DEFAULT;
+        [SerializeField] protected Vector2 _velocity;
+        [SerializeField] protected float _maxVelocity = Character.MAX_VELOCITY_DEFAULT;
 
         private Character _character;
 
@@ -24,6 +24,7 @@ namespace AsteroidGame
         {
             base.Update();
             transform.position = _character.Position;
+            transform.rotation = Quaternion.Euler(0f, 0f, _character.Rotation);
         }
     }
 }

@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42cd35c33474a30af6720997528a8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerControllerPrefab: {fileID: 7198887868682434679, guid: ecd5f8bd09844b04e899380c6e62e49d, type: 3}
   _asteroidsFactoryPrefab: {fileID: 4338161939817285337, guid: adb64ccf9617c74449ff20522cf94dbf, type: 3}
   _balanceSettings: {fileID: 11400000, guid: 6d438e088ef6d1745859cf43bdd707a2, type: 2}
