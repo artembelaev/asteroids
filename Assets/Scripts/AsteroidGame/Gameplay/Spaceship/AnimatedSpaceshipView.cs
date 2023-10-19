@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AsteroidGame
 {
-    public class AnimatedSpaceshipViewBehaviour : ViewBehaviour
+    public class AnimatedSpaceshipView : ViewBehaviour
     {
         [SerializeField] private Animator _shipAnimator;
         [SerializeField] private Animator _shipEngineAnimator;

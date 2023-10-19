@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006b5ffbe1b446949d63a28c239e44d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterPrefab: {fileID: 4890759857622277240, guid: 29f64806fd488684b8e9b2c5da62da7f, type: 3}
+  _asteroidPrefab: {fileID: 3470328591823883055, guid: 29f64806fd488684b8e9b2c5da62da7f, type: 3}
   _parent: {fileID: 4266886336775120255}

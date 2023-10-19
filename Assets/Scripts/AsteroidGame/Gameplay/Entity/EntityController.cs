@@ -3,7 +3,7 @@ using MVC;
 
 namespace AsteroidGame
 {
-    public abstract class EntityControllerBehaviour : ControllerBehaviour
+    public abstract class EntityController : ControllerBehaviour
     {
         private Entity _entity;
         protected override object CreateModel()

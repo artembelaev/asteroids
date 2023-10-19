@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace AsteroidGame
 {
-    [RequireComponent(typeof(CharacterControllerBehaviour))]
+    [RequireComponent(typeof(CharacterController))]
     public class CharacterScreenWrapper : MonoBehaviour, IPositionModifier
     {
         [CanBeNull] private Character _character;
 
         private void Start()
         {
-            var controller = GetComponent<CharacterControllerBehaviour>();
+            var controller = GetComponent<CharacterController>();
             if (controller == null)
                 return;
             _character = controller.GetModel<Character>();

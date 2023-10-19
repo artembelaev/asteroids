@@ -2,7 +2,7 @@
 
 namespace AsteroidGame
 {
-    public class CharacterControllerBehaviour : EntityControllerBehaviour
+    public class CharacterController : EntityController
     {
         [SerializeField] protected Vector2 _velocity;
         [SerializeField] protected float _maxVelocity = Character.MAX_VELOCITY_DEFAULT;

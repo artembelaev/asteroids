@@ -2,7 +2,7 @@
 
 namespace AsteroidGame
 {
-    public class PlayerControllerBehaviour : CharacterControllerBehaviour
+    public class PlayerController : CharacterController
     {
         [SerializeField] protected float _acceleration = Spaceship.DEFAULT_ACCELERATION;
         [SerializeField] private float _rotationSpeed = -90f;
@@ -23,7 +23,7 @@ namespace AsteroidGame
 
         protected override void Update()
         {
-            bool engineEnabled = Input.GetKey(KeyCode.Space); // TODO using Input System
+            bool engineEnabled = Input.GetKey(KeyCode.UpArrow); // TODO using Input System
             float rotateAxis = Input.GetAxis("Horizontal");   // TODO using Input System
 
             _spaceship.EnableEngine(engineEnabled);

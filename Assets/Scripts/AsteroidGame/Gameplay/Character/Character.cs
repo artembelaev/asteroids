@@ -20,7 +20,7 @@ namespace AsteroidGame
         public float MaxVelocity { get; set; }
         public bool IsKilled { get; private set; }
 
-        public event Action OnKill;
+        public event Action<Character> OnKill;
 
         private Vector2 _velocity;
         private HashSet<IPositionModifier> _modifiers = new ();
@@ -47,7 +47,7 @@ namespace AsteroidGame
         public void Kill()
         {
             IsKilled = true;
-            OnKill?.Invoke();
+            OnKill?.Invoke(this);
         }
 
         public void AddPositionModifier(IPositionModifier modifier)

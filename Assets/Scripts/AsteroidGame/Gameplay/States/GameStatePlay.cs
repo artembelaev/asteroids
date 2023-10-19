@@ -31,8 +31,8 @@ namespace AsteroidGame
             Clear();
             for (int i = 0; i < _balanceSettings.AsteroidsCount; ++i)
             {
-                var asteroid = _asteroidsFactory.Create(0);
-                asteroid.Position = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * 5f;
+                Vector2 position = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * 5f;;
+                var asteroid = _asteroidsFactory.Create(0, position);
                 asteroid.Velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * 3f;
             }
         }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using AsteroidGame;
 using UnityEngine;
 using NotImplementedException = System.NotImplementedException;
 
@@ -7,23 +6,42 @@ namespace AsteroidGame
 {
     public class AsteroidsFactory : MonoBehaviour, IAsteroidsFactory
     {
-        [SerializeField] private CharacterControllerBehaviour _characterPrefab;
+        [SerializeField] private AsteroidController _asteroidPrefab;
         [SerializeField] private Transform _parent;
 
-        private List<CharacterControllerBehaviour> _created = new ();
+        private Dictionary<Asteroid, AsteroidController> _created = new ();
 
-        public Character Create(int level)
+        public Asteroid Create(int level, Vector2 position)
         {
-            CharacterControllerBehaviour controller = Instantiate(_characterPrefab, _parent);
-            return controller.GetModel<Character>();
+            AsteroidController controller = Instantiate(_asteroidPrefab,
+                position, Quaternion.identity, _parent);
+            controller.Construct(this);
+            var asteroid = controller.GetModel<Asteroid>();
+            asteroid.OnKill += OnAsteroidKill;
+            _created[asteroid] = controller;
+            return asteroid;
+        }
+
+        private void OnAsteroidKill(Character character)
+        {
+            if (character is Asteroid asteroid)
+                Clear(asteroid);
+        }
+
+        private void Clear(Asteroid asteroid)
+        {
+            if (_created.Remove(asteroid, out AsteroidController controller))
+                Destroy(controller);
         }
 
         public void ClearAll()
         {
-            foreach (CharacterControllerBehaviour asteroidController in _created)
+            foreach (var pair in _created)
             {
-                Destroy(asteroidController.gameObject);
+                AsteroidController controller = pair.Value;
+                Destroy(controller.gameObject);
             }
+            _created.Clear();
         }
     }
 }
