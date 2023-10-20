@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace AsteroidGame
@@ -20,9 +19,20 @@ namespace AsteroidGame
         private float _blinkTimeRemains;
         private float _timeToRespawn;
 
+        public Player() : base()
+        {
+            OnBlinkChanged += BlinkChanged;
+        }
+
+        private void BlinkChanged(Character _, bool blink)
+        {
+            if (blink)
+                _blinkTimeRemains = BlinkDuration;
+        }
+
         public override void Kill()
         {
-            if (IsKilled)
+            if (IsKilled || IsBlink || NeedRespawn)
                 return;
 
             if (LivesCount > 0)
@@ -37,6 +47,8 @@ namespace AsteroidGame
         private void RespawnAfterDelay()
         {
             NeedRespawn = true;
+            IsBlink = true;
+
             _timeToRespawn = RespawnDelay;
         }
 
@@ -47,10 +59,12 @@ namespace AsteroidGame
 
         public void Respawn(Vector2 position)
         {
+            Position = position;
+            Velocity = Vector2.zero;
             NeedRespawn = false;
             IsBlink = true;
             _blinkTimeRemains = BlinkDuration;
-            OnRespawn?.Invoke(this, position);
+            OnRespawn?.Invoke(this, Position);
         }
 
         public override void Tick(float dt)

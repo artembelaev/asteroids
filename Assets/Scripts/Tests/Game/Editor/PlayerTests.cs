@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerTests
 {
+    private const float DELTA = 0.00001f;
+
     [Test]
     public void TestConstructor()
     {
@@ -30,66 +32,32 @@ public class PlayerTests
 
         player.Kill();
 
-        Assert.IsTrue(player.IsKilled);
-        Assert.IsTrue(killEventFired);
-        Assert.AreEqual(0, player.LivesCount);
-
-        killEventFired = false;
-        player.Kill();
-
-        Assert.IsTrue(player.IsKilled);
-        Assert.IsFalse(killEventFired);
-        Assert.AreEqual(0, player.LivesCount);
-    }
-
-    [Test]
-    public void TestRespawn()
-    {
-        int livesCount = 2;
-        var player = new Player {LivesCount = livesCount};
-
-        bool killEventFired = false;
-        player.OnKill += ch => killEventFired = true;
-
-        bool respawnEventFired = false;
-        player.OnRespawn += (p, pos) => respawnEventFired = true;
-
-        player.Kill();
-
-        Assert.IsFalse(player.IsKilled);
-        Assert.IsFalse(respawnEventFired);
-        Assert.IsFalse(killEventFired);
+        // before respawn
+        Assert.IsTrue(player.IsBlink);
         Assert.IsTrue(player.NeedRespawn);
-
-        player.Tick(player.RespawnDelay + 0.01f); // Wait for respawn
-
-        Assert.IsFalse(player.IsKilled);
-        Assert.IsTrue(respawnEventFired);
+        Assert.AreEqual(1, player.LivesCount);
         Assert.IsFalse(killEventFired);
-        Assert.IsFalse(player.NeedRespawn);
+        Assert.IsFalse(player.IsKilled);
 
-        respawnEventFired = false;
+        // after respawn
+        player.Tick(player.RespawnDelay + 0.01f);
         player.Kill();
 
+        Debug.Log($"---> {player.LivesCount} {player.IsBlink}");
+        Assert.IsTrue(player.IsBlink);
+        Assert.IsFalse(player.NeedRespawn);
+        Assert.AreEqual(1, player.LivesCount);
+        Assert.IsFalse(killEventFired);
+        Assert.IsFalse(player.IsKilled);
+
+        // after blink period
+        player.Tick(player.BlinkDuration + 0.01f);
+        player.Kill();
+
+        Assert.IsFalse(player.IsBlink);
+        Assert.IsFalse(player.NeedRespawn);
         Assert.IsTrue(player.IsKilled);
         Assert.IsTrue(killEventFired);
-        Assert.IsFalse(respawnEventFired);
-        Assert.IsFalse(player.NeedRespawn);
+        Assert.AreEqual(0, player.LivesCount);
     }
-
-    [Test]
-    public void TestBlinkAfterRespawn()
-    {
-        var player = new Player {BlinkDuration = 1f};
-
-        player.Respawn();
-        Assert.IsTrue(player.IsBlink);
-
-        player.Tick(0.5f);
-        Assert.IsTrue(player.IsBlink);
-
-        player.Tick(0.55f);
-        Assert.IsFalse(player.IsBlink);
-    }
-
 }

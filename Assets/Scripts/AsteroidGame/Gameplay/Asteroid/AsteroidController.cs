@@ -38,7 +38,8 @@ namespace AsteroidGame
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            if (!col.TryGetComponent(out CharacterController characterController) ||
+            if (_asteroid.IsKilled ||
+                !col.TryGetComponent(out CharacterController characterController) ||
                 characterController.Character.IsKilled ||
                 characterController.Character.IsBlink)
                 return;
@@ -49,8 +50,8 @@ namespace AsteroidGame
 
         private void OnCreateChild(Vector2 childVelocity)
         {
-            Asteroid child = _asteroidsFactory.Create(_asteroid.Level + 1, _asteroid.Position);
-            child.Velocity = childVelocity;
+           Asteroid child = _asteroidsFactory.Create(_asteroid.Level + 1, _asteroid.Position);
+           child.Velocity = childVelocity;
         }
     }
 }

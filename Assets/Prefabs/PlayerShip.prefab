@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4383674150844704574}
   - component: {fileID: 7198887868682434679}
-  - component: {fileID: 3888888710586328300}
+  - component: {fileID: 8053938970730707195}
   - component: {fileID: 2225336870655324993}
   - component: {fileID: 5046004027144712880}
   - component: {fileID: 6373018551132967930}
@@ -54,7 +54,9 @@ MonoBehaviour:
   _acceleration: 5
   _rotationSpeed: -90
   _livesCount: 3
---- !u!114 &3888888710586328300
+  _blinkDuration: 2
+  _respawnDelay: 2
+--- !u!114 &8053938970730707195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,11 +65,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3261154898787307410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e46529cf590f44d493084d9562236aca, type: 3}
+  m_Script: {fileID: 11500000, guid: 78dfcc4765ce42c8af40c3b49d75c61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _shipAnimator: {fileID: 0}
   _shipEngineAnimator: {fileID: 0}
+  _visual: {fileID: 6817602995737050808}
+  _blinkTime: 0.25
 --- !u!114 &2225336870655324993
 MonoBehaviour:
   m_ObjectHideFlags: 0

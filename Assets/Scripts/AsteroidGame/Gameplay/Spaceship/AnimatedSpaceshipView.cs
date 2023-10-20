@@ -15,7 +15,7 @@ namespace AsteroidGame
         private static readonly int PARAM_KILLED = Animator.StringToHash("killed");
         private static readonly int PARAM_ENGINE_ENABLED = Animator.StringToHash("engine_enabled");
 
-        private void Start()
+        protected virtual void Start()
         {
             _ship = Model as Spaceship;
         }
