@@ -35,19 +35,6 @@ namespace AsteroidGame
             _asteroid.OnCreateChild += OnCreateChild;
         }
 
-
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            if (_asteroid.IsKilled ||
-                !col.TryGetComponent(out CharacterController characterController) ||
-                characterController.Character.IsKilled ||
-                characterController.Character.IsBlink)
-                return;
-
-            characterController.Character.Kill();
-            _asteroid.Kill();
-        }
-
         private void OnCreateChild(Vector2 childVelocity)
         {
            Asteroid child = _asteroidsFactory.Create(_asteroid.Level + 1, _asteroid.Position);

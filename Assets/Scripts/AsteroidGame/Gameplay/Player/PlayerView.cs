@@ -53,7 +53,7 @@ namespace AsteroidGame
         private void OnKill(Character character)
         {
             Assert.IsNotNull(character);
-            Visible = false;
+            Visible = false; // TODO animation
         }
 
         private void OnBlinkChanged(Character character, bool blink)
@@ -63,14 +63,12 @@ namespace AsteroidGame
 
             if (blink && _player.NeedRespawn)
             {
-                Visible = false;
+                Visible = false; // TODO animation
                 return;
             }
 
             if (blink && _blinkCoroutine == null)
             {
-
-                Debug.Log($"---> Start blink");
                 _blinkCoroutine = StartCoroutine(BlinkCoroutine());
             }
             else if (!blink && _blinkCoroutine != null)
