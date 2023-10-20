@@ -53,6 +53,7 @@ MonoBehaviour:
   _maxVelocity: 10
   _acceleration: 5
   _rotationSpeed: -90
+  _livesCount: 3
 --- !u!114 &3888888710586328300
 MonoBehaviour:
   m_ObjectHideFlags: 0

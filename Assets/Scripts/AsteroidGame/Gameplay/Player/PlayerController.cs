@@ -6,22 +6,29 @@ namespace AsteroidGame
     {
         [SerializeField] protected float _acceleration = Spaceship.DEFAULT_ACCELERATION;
         [SerializeField] private float _rotationSpeed = -90f;
+        [SerializeField] private int _livesCount = 3;
+        [SerializeField] private float _blinkDuration = 2f;
+        [SerializeField] private float _respawnDelay = 2f;
 
-        private Spaceship _spaceship;
+        private Player _player;
 
         protected override object CreateModel()
         {
-            return new Spaceship
+            return new Player
             {
-                Acceleration = _acceleration, Position = transform.position,
-                Rotation = transform.rotation.z, Velocity = _velocity, MaxVelocity = _maxVelocity
+                Position = transform.position, Rotation = transform.rotation.z,
+                Velocity = _velocity, MaxVelocity = _maxVelocity,
+                Acceleration = _acceleration,
+                LivesCount = _livesCount,
+                BlinkDuration = _blinkDuration,
+                RespawnDelay = _respawnDelay,
             };
         }
 
         protected override void Awake()
         {
             base.Awake();
-            _spaceship = GetModel<Spaceship>();
+            _player = GetModel<Player>();
         }
 
         protected override void Update()
@@ -29,8 +36,8 @@ namespace AsteroidGame
             bool engineEnabled = Input.GetKey(KeyCode.UpArrow); // TODO using Input System
             float rotateAxis = Input.GetAxis("Horizontal");   // TODO using Input System
 
-            _spaceship.EnableEngine(engineEnabled);
-            _spaceship.Rotation += _rotationSpeed * rotateAxis * Time.deltaTime;
+            _player.EnableEngine(engineEnabled);
+            _player.Rotation += _rotationSpeed * rotateAxis * Time.deltaTime;
 
             base.Update();
         }

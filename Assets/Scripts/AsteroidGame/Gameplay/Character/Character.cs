@@ -20,10 +20,24 @@ namespace AsteroidGame
         public float MaxVelocity { get; set; }
         public bool IsKilled { get; private set; }
 
+        public bool IsBlink
+        {
+            get => _isBlink;
+            set
+            {
+                if (value == _isBlink)
+                    return;
+                _isBlink = value;
+                OnBlinkChanged?.Invoke(this, value);
+            }
+        }
+
         public event Action<Character> OnKill;
+        public event Action<Character, bool> OnBlinkChanged;
 
         private Vector2 _velocity;
         private HashSet<IPositionModifier> _modifiers = new ();
+        private bool _isBlink;
 
         public Character(Vector2 position = default, float rotation = 0f, Vector2 velocity = default, float maxVelocity = MAX_VELOCITY_DEFAULT)
         {

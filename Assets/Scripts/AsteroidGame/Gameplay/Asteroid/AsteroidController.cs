@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AsteroidGame
 {
@@ -40,7 +39,8 @@ namespace AsteroidGame
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (!col.TryGetComponent(out CharacterController characterController) ||
-                characterController.Character.IsKilled)
+                characterController.Character.IsKilled ||
+                characterController.Character.IsBlink)
                 return;
 
             characterController.Character.Kill();

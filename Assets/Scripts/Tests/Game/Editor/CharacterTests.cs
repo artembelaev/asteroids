@@ -88,4 +88,19 @@ public class CharacterTests
 
     }
 
+    [Test]
+    public void TestBlink()
+    {
+        Character ch = new Character();
+
+        bool blink = false;
+        ch.OnBlinkChanged += (c, b) => blink = b;
+
+        ch.IsBlink = true;
+        Assert.IsTrue(blink);
+
+        ch.IsBlink = false;
+        Assert.IsFalse(blink);
+    }
+
 }
