@@ -44,7 +44,7 @@ namespace AsteroidGame
             }
         }
 
-        public void Kill()
+        public virtual void Kill()
         {
             if (IsKilled)
                 return;

@@ -10,7 +10,7 @@ public class SpaceshipTests
     public void TestConstructor()
     {
         float acceleration = 1f;
-        var ship = new Spaceship(acceleration);
+        var ship = new Spaceship {Acceleration = acceleration};
 
         Assert.IsTrue(Mathf.Approximately(ship.Acceleration, acceleration));
     }
@@ -25,8 +25,11 @@ public class SpaceshipTests
         float resultVelX, float resultVelY, float resultPosX, float resultPosY)
     {
         Vector2 velocityVector = velocity * Vector2.up;
-        var ship = new Spaceship(acceleration, position: Vector2.zero,
-            rotation, velocityVector);
+        var ship = new Spaceship
+        {
+            Acceleration = acceleration, Position = Vector2.zero,
+            Rotation = rotation, Velocity = velocityVector
+        };
 
         // Engine off
         Assert.IsFalse(ship.EngineEnabled);

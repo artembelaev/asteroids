@@ -11,8 +11,11 @@ namespace AsteroidGame
 
         protected override object CreateModel()
         {
-            return new Spaceship(_acceleration, transform.position,
-                transform.rotation.z, _velocity, _maxVelocity);
+            return new Spaceship
+            {
+                Acceleration = _acceleration, Position = transform.position,
+                Rotation = transform.rotation.z, Velocity = _velocity, MaxVelocity = _maxVelocity
+            };
         }
 
         protected override void Awake()

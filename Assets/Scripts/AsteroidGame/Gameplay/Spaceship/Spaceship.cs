@@ -6,21 +6,10 @@ namespace AsteroidGame
     {
         public const float DEFAULT_ACCELERATION = 5f;
 
-        public float Acceleration { get; private set; }
+        public float Acceleration { get; set; } = DEFAULT_ACCELERATION;
         public bool EngineEnabled { get; private set; }
 
         private float _currAcceleration = 0f;
-
-        public Spaceship(
-            float acceleration = DEFAULT_ACCELERATION,
-            Vector2 position = default,
-            float rotation = 0f,
-            Vector2 velocity = default,
-            float maxVelocity = MAX_VELOCITY_DEFAULT):
-            base(position, rotation, velocity, maxVelocity)
-        {
-            Acceleration = acceleration;
-        }
 
         public void EnableEngine(bool enabled)
         {
