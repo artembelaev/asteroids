@@ -10,7 +10,7 @@ namespace AsteroidGame
     {
         private readonly Spaceship _player;
         private readonly IAsteroidsFactory _asteroidsFactory;
-        private readonly BalanceSettings _balanceSettings;
+        private readonly IBalanceSettings _balanceSettings;
 
         public GameStatePlay(Spaceship player, IAsteroidsFactory asteroidsFactory, BalanceSettings balanceSettings)
             : base(GameStateEnum.Play)
