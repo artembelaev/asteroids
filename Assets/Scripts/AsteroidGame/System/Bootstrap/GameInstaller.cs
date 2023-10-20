@@ -13,6 +13,7 @@ namespace AsteroidGame
         private PlayerController _playerController;
         private AsteroidsFactory _asteroidsFactory;
         private GameStateMachine _fsm;
+        private GameStatePlay _gameStatePlay;
 
         private void Awake()
         {
@@ -39,7 +40,14 @@ namespace AsteroidGame
         private void InstallGameStates()
         {
             _fsm = new GameStateMachine();
-            _fsm.AddState(new GameStatePlay(_asteroidsFactory, _balanceSettings));
+
+            _gameStatePlay = new GameStatePlay(
+                _playerController.GetModel<Spaceship>(),
+                _asteroidsFactory,
+                _balanceSettings);
+
+            _fsm.AddState(_gameStatePlay);
+
             _fsm.Enter(GameStateEnum.Play);
         }
     }

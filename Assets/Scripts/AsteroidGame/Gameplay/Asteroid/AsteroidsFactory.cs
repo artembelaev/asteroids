@@ -1,20 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
 
 namespace AsteroidGame
 {
+
     public class AsteroidsFactory : MonoBehaviour, IAsteroidsFactory
     {
-        [SerializeField] private AsteroidController _asteroidPrefab;
+        [SerializeField] private List<AsteroidController> _prefabs;
         [SerializeField] private Transform _parent;
 
+        private Dictionary<int, AsteroidController> _prefabsDict;
         private Dictionary<Asteroid, AsteroidController> _created = new ();
+
+        private Dictionary<int, AsteroidController> PrefabsDict =>
+            _prefabsDict ??= _prefabs.Select((item, index) => new { Index = index, Item = item })
+                .ToDictionary(pair => pair.Index, pair => pair.Item);
 
         public Asteroid Create(int level, Vector2 position)
         {
-            AsteroidController controller = Instantiate(_asteroidPrefab,
-                position, Quaternion.identity, _parent);
+            if (!PrefabsDict.TryGetValue(level, out AsteroidController prefab))
+                return null;
+
+            AsteroidController controller = Instantiate(prefab, position, Quaternion.identity, _parent);
+
             controller.Construct(this);
             var asteroid = controller.GetModel<Asteroid>();
             asteroid.OnKill += OnAsteroidKill;
@@ -31,7 +41,7 @@ namespace AsteroidGame
         private void Clear(Asteroid asteroid)
         {
             if (_created.Remove(asteroid, out AsteroidController controller))
-                Destroy(controller);
+                Destroy(controller.gameObject);
         }
 
         public void ClearAll()

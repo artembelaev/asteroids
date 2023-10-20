@@ -26,10 +26,10 @@ namespace AsteroidGame
             base(position, rotation, velocity, maxVelocity)
         {
             Level = level;
-            OnKill += CreateChilds;
+            OnKill += CreateChildren;
         }
 
-        private void CreateChilds(Character character)
+        private void CreateChildren(Character character)
         {
             if (Level >= LevelCount - 1)
                 return;

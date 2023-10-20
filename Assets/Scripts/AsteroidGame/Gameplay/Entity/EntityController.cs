@@ -6,6 +6,7 @@ namespace AsteroidGame
     public abstract class EntityController : ControllerBehaviour
     {
         private Entity _entity;
+
         protected override object CreateModel()
         {
             return new Entity();

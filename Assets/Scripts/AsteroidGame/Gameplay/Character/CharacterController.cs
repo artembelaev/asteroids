@@ -9,6 +9,8 @@ namespace AsteroidGame
 
         private Character _character;
 
+        public Character Character => _character;
+
         protected override object CreateModel()
         {
             return new Character(transform.position, transform.rotation.z, _velocity, _maxVelocity);

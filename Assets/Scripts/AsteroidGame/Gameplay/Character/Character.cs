@@ -46,6 +46,9 @@ namespace AsteroidGame
 
         public void Kill()
         {
+            if (IsKilled)
+                return;
+
             IsKilled = true;
             OnKill?.Invoke(this);
         }

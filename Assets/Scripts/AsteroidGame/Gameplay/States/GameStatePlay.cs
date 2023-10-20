@@ -2,18 +2,24 @@
 using AsteroidGame.Settings;
 using AsteroidGame.System.States;
 using UnityEngine;
+using NotImplementedException = System.NotImplementedException;
 
 namespace AsteroidGame
 {
     public class GameStatePlay : State<GameStateEnum>
     {
+        private readonly Spaceship _player;
         private readonly IAsteroidsFactory _asteroidsFactory;
         private readonly BalanceSettings _balanceSettings;
 
-        public GameStatePlay(IAsteroidsFactory asteroidsFactory, BalanceSettings balanceSettings) : base(GameStateEnum.Play)
+        public GameStatePlay(Spaceship player, IAsteroidsFactory asteroidsFactory, BalanceSettings balanceSettings)
+            : base(GameStateEnum.Play)
         {
+            _player = player;
             _asteroidsFactory = asteroidsFactory;
             _balanceSettings = balanceSettings;
+
+            _player.OnKill += OnPLayerKill;
         }
 
         public override void OnEnter()
@@ -33,8 +39,16 @@ namespace AsteroidGame
             {
                 Vector2 position = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * 5f;;
                 var asteroid = _asteroidsFactory.Create(0, position);
-                asteroid.Velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * 3f;
+                if (asteroid != null)
+                {
+                    asteroid.Velocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * 3f;
+                }
             }
+        }
+
+        private void OnPLayerKill(Character character)
+        {
+            Debug.Log($"---> Game Over"); // TODO go to scores state
         }
 
         private void Clear()

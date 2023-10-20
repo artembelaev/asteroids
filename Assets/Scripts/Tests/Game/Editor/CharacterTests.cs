@@ -60,6 +60,10 @@ public class CharacterTests
 
         Assert.IsTrue(ch.IsKilled);
         Assert.IsTrue(killEventFired);
+
+        killEventFired = false;
+        ch.Kill();
+        Assert.IsFalse(killEventFired);
     }
 
     [Test]
