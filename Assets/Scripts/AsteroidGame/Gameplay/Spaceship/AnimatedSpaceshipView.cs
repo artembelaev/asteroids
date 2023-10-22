@@ -1,5 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using MVC;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace AsteroidGame
         [CanBeNull] private Spaceship _ship;
 
         private static readonly int PARAM_KILLED = Animator.StringToHash("killed");
-        private static readonly int PARAM_ENGINE_ENABLED = Animator.StringToHash("engine_enabled");
+        private static readonly int PARAM_ENGINE_ENABLED = Animator.StringToHash("enabled");
 
         protected virtual void Start()
         {
@@ -29,7 +28,7 @@ namespace AsteroidGame
                 _shipAnimator.SetBool(PARAM_KILLED, _ship.IsKilled);
 
             if (_shipEngineAnimator != null)
-                _shipAnimator.SetBool(PARAM_ENGINE_ENABLED, _ship.EngineEnabled);
+                _shipEngineAnimator.SetBool(PARAM_ENGINE_ENABLED, _ship.EngineEnabled);
         }
     }
 }
