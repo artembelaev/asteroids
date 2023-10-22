@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5046004027144712880}
   - component: {fileID: 6373018551132967930}
   m_Layer: 3
-  m_Name: PlayerShip
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,6 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1806178891268791808}
   - {fileID: 355420525036617478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae25cd7c00b411fac502faceab377d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _killAction: 0
   _velocity: {x: 0, y: 0}
   _maxVelocity: 10
   _acceleration: 5
@@ -56,6 +58,7 @@ MonoBehaviour:
   _livesCount: 3
   _blinkDuration: 2
   _respawnDelay: 2
+  _bulletWeapon: {fileID: 4830204484635066996}
 --- !u!114 &8053938970730707195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +233,70 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6254204151918191613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1806178891268791808}
+  - component: {fileID: 4830204484635066996}
+  - component: {fileID: 8345952822764540158}
+  m_Layer: 3
+  m_Name: BulletWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1806178891268791808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254204151918191613}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4383674150844704574}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4830204484635066996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254204151918191613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f9cd7ccc70453b9624a6c4d8ccd18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammoCount: 4
+  _fireCooldown: 0.05
+  _projectilePrefab: {fileID: 9097188737241622948, guid: 3189344976ee4ee4485dea9aed87ec29, type: 3}
+  _attachedCharacterController: {fileID: 7198887868682434679}
+--- !u!114 &8345952822764540158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254204151918191613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd679f3061e410f84e077e099636106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponController: {fileID: 4830204484635066996}
+  _maxAmmo: 4
+  _reloadSpeed: 1
 --- !u!1 &6817602995737050808
 GameObject:
   m_ObjectHideFlags: 0

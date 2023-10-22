@@ -4,6 +4,13 @@ namespace AsteroidGame
 {
     public class CharacterController : EntityController
     {
+        public enum KillAction
+        {
+            None = 0,
+            DestroyGameObject = 1,
+        }
+
+        [SerializeField] private KillAction _killAction = KillAction.DestroyGameObject;
         [SerializeField] protected Vector2 _velocity;
         [SerializeField] protected float _maxVelocity = Character.MAX_VELOCITY_DEFAULT;
 
@@ -20,6 +27,22 @@ namespace AsteroidGame
         {
             base.Awake();
             _character = GetModel<Character>();
+        }
+
+        protected virtual void Start()
+        {
+            _character.OnKill += OnKill;
+        }
+
+        protected void OnDestroy()
+        {
+            _character.OnKill -= OnKill;
+        }
+
+        private void OnKill(Character character)
+        {
+            if (_killAction == KillAction.DestroyGameObject)
+                Destroy(gameObject);
         }
 
         protected override void Update()

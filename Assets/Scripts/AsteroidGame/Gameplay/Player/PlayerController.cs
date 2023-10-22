@@ -9,6 +9,7 @@ namespace AsteroidGame
         [SerializeField] private int _livesCount = 3;
         [SerializeField] private float _blinkDuration = 2f;
         [SerializeField] private float _respawnDelay = 2f;
+        [SerializeField] private WeaponController _bulletWeapon;
 
         private Player _player;
 
@@ -33,14 +34,25 @@ namespace AsteroidGame
 
         protected override void Update()
         {
-            bool engineEnabled = Input.GetKey(KeyCode.UpArrow); // TODO using Input System
-            float rotateAxis = Input.GetAxis("Horizontal");   // TODO using Input System
-
-            _player.EnableEngine(engineEnabled);
-            _player.Rotation += _rotationSpeed * rotateAxis * Time.deltaTime;
+            UpdateBulletWeapon();
+            UpdateMovement();
 
             base.Update();
         }
 
+        private void UpdateBulletWeapon()
+        {
+            bool fire = Input.GetKey(KeyCode.Space); // TODO using Input System
+            _bulletWeapon.Weapon.FireTrigger = fire;
+        }
+
+        private void UpdateMovement()
+        {
+            bool engineEnabled = Input.GetKey(KeyCode.UpArrow); // TODO using Input System
+            float rotateAxis = Input.GetAxis("Horizontal"); // TODO using Input System
+
+            _player.EnableEngine(engineEnabled);
+            _player.Rotation += _rotationSpeed * rotateAxis * Time.deltaTime;
+        }
     }
 }

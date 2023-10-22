@@ -43,7 +43,6 @@ public class PlayerTests
         player.Tick(player.RespawnDelay + 0.01f);
         player.Kill();
 
-        Debug.Log($"---> {player.LivesCount} {player.IsBlink}");
         Assert.IsTrue(player.IsBlink);
         Assert.IsFalse(player.NeedRespawn);
         Assert.AreEqual(1, player.LivesCount);
