@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace AsteroidGame
 {
@@ -9,12 +10,15 @@ namespace AsteroidGame
         public float Acceleration { get; set; } = DEFAULT_ACCELERATION;
         public bool EngineEnabled { get; private set; }
 
+        public event Action<bool> OnEngineEnabled;
+
         private float _currAcceleration = 0f;
 
         public void EnableEngine(bool enabled)
         {
             EngineEnabled = enabled;
             _currAcceleration = enabled ? Acceleration : 0f;
+            OnEngineEnabled?.Invoke(enabled);
         }
 
         protected override void UpdatePosition(float dt)

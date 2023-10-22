@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Assertions;
+using NotImplementedException = System.NotImplementedException;
 
 namespace AsteroidGame
 {
@@ -10,9 +9,12 @@ namespace AsteroidGame
     {
         [SerializeField] private GameObject _visual;
         [SerializeField] private float _blinkTime = 0.25f;
+        [SerializeField] private Animator _engineAnimator;
 
         [CanBeNull] private Player _player;
         private Coroutine _blinkCoroutine;
+
+        private static readonly int EnabledParam = Animator.StringToHash("enabled");
 
         private bool Visible
         {
@@ -29,7 +31,13 @@ namespace AsteroidGame
                 _player.OnBlinkChanged += OnBlinkChanged;
                 _player.OnRespawn += OnRespawn;
                 _player.OnKill += OnKill;
+                _player.OnEngineEnabled += OnOnEngineEnabled;
             }
+        }
+
+        private void OnOnEngineEnabled(bool enable)
+        {
+            _engineAnimator.SetBool(EnabledParam, enable);
         }
 
         private void OnDestroy()
@@ -39,6 +47,7 @@ namespace AsteroidGame
                 _player.OnBlinkChanged -= OnBlinkChanged;
                 _player.OnRespawn -= OnRespawn;
                 _player.OnKill -= OnKill;
+                _player.OnEngineEnabled -= OnOnEngineEnabled;
             }
         }
 

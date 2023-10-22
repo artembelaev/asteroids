@@ -31,6 +31,9 @@ public class SpaceshipTests
             Rotation = rotation, Velocity = velocityVector
         };
 
+        bool engineEnabled = false;
+        ship.OnEngineEnabled += b => engineEnabled = b;
+
         // Engine off
         Assert.IsFalse(ship.EngineEnabled);
         ship.Tick(dt);
@@ -40,6 +43,7 @@ public class SpaceshipTests
         // Engine on
         ship.EnableEngine(true);
         Assert.IsTrue(ship.EngineEnabled);
+        Assert.IsTrue(engineEnabled);
         ship.Tick(dt);
         Vector2 resultVelocity = new Vector2(resultVelX, resultVelY);
         Assert.IsTrue(Vector2.Distance(ship.Velocity, resultVelocity) < DELTA);
@@ -48,6 +52,7 @@ public class SpaceshipTests
 
         // Engine off
         ship.EnableEngine(false);
+        Assert.IsFalse(engineEnabled);
         ship.Tick(dt);
         Assert.IsTrue(Vector2.Distance(ship.Velocity, resultVelocity) < DELTA);
         Assert.IsTrue(Vector2.Distance(ship.Position, resultPos + resultVelocity * dt) < DELTA);
