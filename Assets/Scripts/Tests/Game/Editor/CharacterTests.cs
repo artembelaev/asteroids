@@ -54,7 +54,7 @@ public class CharacterTests
     {
         Character ch = new Character(velocity: Vector2.right);
         bool killEventFired = false;
-        ch.OnKill += ch => killEventFired = true;
+        ch.OnKill += entity => killEventFired = true;
 
         ch.Kill();
 

@@ -39,7 +39,7 @@ namespace AsteroidGame
             _character.OnKill -= OnKill;
         }
 
-        private void OnKill(Character character)
+        private void OnKill(Entity entity)
         {
             if (_killAction == KillAction.DestroyGameObject)
                 Destroy(gameObject);

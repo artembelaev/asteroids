@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace AsteroidGame
@@ -18,26 +17,10 @@ namespace AsteroidGame
         }
 
         public float MaxVelocity { get; set; }
-        public bool IsKilled { get; private set; }
-
-        public bool IsBlink
-        {
-            get => _isBlink;
-            set
-            {
-                if (value == _isBlink)
-                    return;
-                _isBlink = value;
-                OnBlinkChanged?.Invoke(this, value);
-            }
-        }
-
-        public event Action<Character> OnKill;
-        public event Action<Character, bool> OnBlinkChanged;
 
         private Vector2 _velocity;
         private HashSet<IPositionModifier> _modifiers = new ();
-        private bool _isBlink;
+
 
         public Character(Vector2 position = default, float rotation = 0f, Vector2 velocity = default, float maxVelocity = MAX_VELOCITY_DEFAULT)
         {
@@ -56,15 +39,6 @@ namespace AsteroidGame
             {
                 Position = modifier.Modify(Position);
             }
-        }
-
-        public virtual void Kill()
-        {
-            if (IsKilled)
-                return;
-
-            IsKilled = true;
-            OnKill?.Invoke(this);
         }
 
         public void AddPositionModifier(IPositionModifier modifier)

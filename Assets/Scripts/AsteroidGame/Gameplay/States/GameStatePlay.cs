@@ -46,7 +46,7 @@ namespace AsteroidGame
             }
         }
 
-        private void OnPLayerKill(Character character)
+        private void OnPLayerKill(Entity entity)
         {
             Debug.Log($"---> Game Over"); // TODO go to scores state
         }

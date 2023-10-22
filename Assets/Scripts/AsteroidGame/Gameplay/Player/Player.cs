@@ -24,7 +24,7 @@ namespace AsteroidGame
             OnBlinkChanged += BlinkChanged;
         }
 
-        private void BlinkChanged(Character _, bool blink)
+        private void BlinkChanged(Entity _, bool blink)
         {
             if (blink)
                 _blinkTimeRemains = BlinkDuration;

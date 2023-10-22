@@ -6,10 +6,21 @@ namespace AsteroidGame
 {
     public class WeaponController : EntityController
     {
+        public enum ProjectileType
+        {
+            SpawnCharacter,
+            SpawnGameObject,
+        }
+
+        [SerializeField] private CharacterController _attachedCharacterController;
         [SerializeField] private int _ammoCount = 4;
         [SerializeField] private float _fireCooldown = 0.125f;
-        [SerializeField] private CharacterController _projectilePrefab;
-        [SerializeField] private CharacterController _attachedCharacterController;
+        [SerializeField] private ProjectileType _projectileType = ProjectileType.SpawnCharacter;
+
+        [SerializeField] private CharacterController _projectilePrefabCharacter;
+        [SerializeField] private GameObject _projectilePrefabGameObject;
+        [SerializeField] private bool _spawnAsChild = true;
+        [SerializeField] private Transform _spawnPosition;
 
         private Weapon _weapon;
 
@@ -29,6 +40,7 @@ namespace AsteroidGame
         private void Reset()
         {
             _attachedCharacterController = GetComponent<CharacterController>();
+            _spawnPosition = transform;
         }
 
         protected override void Awake()
@@ -49,10 +61,35 @@ namespace AsteroidGame
             if (AttachedCharacter == null)
                 return;
 
+            Transform parent = _spawnAsChild ? transform : null;
+            Vector3 position = _spawnPosition.position;
+            switch (_projectileType)
+            {
+                case ProjectileType.SpawnCharacter:
+                    SpawnProjectileCharacter(parent, position);
+                    break;
+                case ProjectileType.SpawnGameObject:
+                    SpawnProjectileGameObject(parent, position);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void SpawnProjectileCharacter(Transform parent, Vector3 position)
+        {
             var rotation = Quaternion.Euler(0f, 0f, AttachedCharacter.Rotation);
-            CharacterController projectileController = Instantiate(_projectilePrefab, AttachedCharacter.Position, rotation); // TODO pool
+            CharacterController projectileController =
+                Instantiate(_projectilePrefabCharacter, position, rotation, parent); // TODO pool
             Character projectile = projectileController.Character;
             projectile.Velocity = (rotation * Vector3.up) * projectile.Velocity.magnitude;
+        }
+
+
+        private void SpawnProjectileGameObject(Transform parent, Vector3 position)
+        {
+            var rotation = Quaternion.Euler(0f, 0f, AttachedCharacter.Rotation);
+            Instantiate(_projectilePrefabGameObject, position, rotation, parent); // TODO pool
 
         }
 

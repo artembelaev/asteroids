@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _killAction: 1
   _velocity: {x: 1.5, y: 3}
-  _maxVelocity: 10
+  _maxVelocity: 8
   _level: 0
   _levelCount: 3
   _childCount: 2

@@ -10,6 +10,7 @@ namespace AsteroidGame
         [SerializeField] private float _blinkDuration = 2f;
         [SerializeField] private float _respawnDelay = 2f;
         [SerializeField] private WeaponController _bulletWeapon;
+        [SerializeField] private WeaponController _laserWeapon;
 
         private Player _player;
 
@@ -34,10 +35,17 @@ namespace AsteroidGame
 
         protected override void Update()
         {
+            UpdateLaserWeapon();
             UpdateBulletWeapon();
             UpdateMovement();
 
             base.Update();
+        }
+
+        private void UpdateLaserWeapon()
+        {
+            bool fire = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl); // TODO using Input System
+            _laserWeapon.Weapon.FireTrigger = fire;
         }
 
         private void UpdateBulletWeapon()

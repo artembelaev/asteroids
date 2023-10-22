@@ -7,6 +7,8 @@ namespace AsteroidGame
     {
         private Entity _entity;
 
+        public Entity Entity => _entity;
+
         protected override object CreateModel()
         {
             return new Entity();

@@ -5,14 +5,14 @@ namespace AsteroidGame
 {
     public class ProjectileController : MonoBehaviour
     {
-        [CanBeNull] private Character _projectile;
+        [CanBeNull] private Entity _projectile;
 
         private void Start()
         {
-            var controller = GetComponent<CharacterController>();
+            var controller = GetComponent<EntityController>();
             if (controller == null)
                 return;
-            _projectile = controller.Character;
+            _projectile = controller.Entity;
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -29,9 +29,9 @@ namespace AsteroidGame
             _projectile.Kill();
             character.Kill();
 
-            bool CanCollide(Character ch)
+            bool CanCollide(Entity e)
             {
-                return ch != null && !ch.IsKilled && !ch.IsBlink;
+                return e != null && !e.IsKilled && !e.IsBlink;
             }
         }
     }

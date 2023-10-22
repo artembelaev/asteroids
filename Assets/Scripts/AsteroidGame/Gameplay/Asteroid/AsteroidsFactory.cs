@@ -27,9 +27,9 @@ namespace AsteroidGame
             return asteroid;
         }
 
-        private void OnAsteroidKill(Character character)
+        private void OnAsteroidKill(Entity entity)
         {
-            if (character is Asteroid asteroid)
+            if (entity is Asteroid asteroid)
                 Clear(asteroid);
         }
 

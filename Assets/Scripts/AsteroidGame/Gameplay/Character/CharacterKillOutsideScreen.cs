@@ -39,6 +39,8 @@ namespace AsteroidGame
                             pos.y > halfScreenHeight  ||
                             pos.y < -halfScreenHeight;
 
+            if (needKill)
+                _character.Kill();
 
             return pos;
         }

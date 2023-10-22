@@ -42,21 +42,19 @@ namespace AsteroidGame
             }
         }
 
-        private void OnRespawn(Player player, Vector2 _)
+        private void OnRespawn(Entity entity, Vector2 _)
         {
-            Assert.IsNotNull(player);
             Visible = true;
-            if (player.IsBlink) // restore blink
-                OnBlinkChanged(player, true);
+            if (entity.IsBlink) // restore blink
+                OnBlinkChanged(entity, true);
         }
 
-        private void OnKill(Character character)
+        private void OnKill(Entity _)
         {
-            Assert.IsNotNull(character);
             Visible = false; // TODO animation
         }
 
-        private void OnBlinkChanged(Character character, bool blink)
+        private void OnBlinkChanged(Entity _, bool blink)
         {
             if (_player == null)
                 return;

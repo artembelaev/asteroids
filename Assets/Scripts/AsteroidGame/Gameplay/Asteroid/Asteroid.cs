@@ -29,7 +29,7 @@ namespace AsteroidGame
             OnKill += CreateChildren;
         }
 
-        private void CreateChildren(Character character)
+        private void CreateChildren(Entity character)
         {
             if (Level >= LevelCount - 1)
                 return;

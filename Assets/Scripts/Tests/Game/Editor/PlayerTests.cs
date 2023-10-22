@@ -22,7 +22,7 @@ public class PlayerTests
         var player = new Player {LivesCount = livesCount};
 
         bool killEventFired = false;
-        player.OnKill += ch => killEventFired = true;
+        player.OnKill += entity => killEventFired = true;
 
         player.Kill();
 
