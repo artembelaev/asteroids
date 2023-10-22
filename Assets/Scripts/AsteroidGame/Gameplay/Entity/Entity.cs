@@ -4,7 +4,7 @@ namespace AsteroidGame
 {
     public class Entity
     {
-        public bool IsKilled { get; private set; }
+        public bool IsKilled { get; set; }
 
         public event Action<Entity> OnKill;
 

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using JetBrains.Annotations;
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
 
 namespace AsteroidGame
 {
@@ -27,7 +26,6 @@ namespace AsteroidGame
             {
                 _player.OnBlinkChanged += OnBlinkChanged;
                 _player.OnRespawn += OnRespawn;
-                _player.OnKill += OnKill;
             }
         }
 
@@ -37,7 +35,6 @@ namespace AsteroidGame
             {
                 _player.OnBlinkChanged -= OnBlinkChanged;
                 _player.OnRespawn -= OnRespawn;
-                _player.OnKill -= OnKill;
             }
         }
 
@@ -48,10 +45,6 @@ namespace AsteroidGame
                 OnBlinkChanged(entity, true);
         }
 
-        private void OnKill(Entity _)
-        {
-            Visible = false; // TODO animation
-        }
 
         private void OnBlinkChanged(Entity _, bool blink)
         {
@@ -60,7 +53,6 @@ namespace AsteroidGame
 
             if (blink && _player.NeedRespawn)
             {
-                Visible = false; // TODO animation
                 return;
             }
 

@@ -37,6 +37,7 @@ namespace AsteroidGame
 
             if (LivesCount > 0)
                 --LivesCount;
+            IsKilled = true;
 
             if (LivesCount > 0)
                 RespawnAfterDelay();
@@ -62,6 +63,7 @@ namespace AsteroidGame
             Position = position;
             Velocity = Vector2.zero;
             NeedRespawn = false;
+            IsKilled = false;
             IsBlink = true;
             _blinkTimeRemains = BlinkDuration;
             OnRespawn?.Invoke(this, Position);
