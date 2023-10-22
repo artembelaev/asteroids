@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2576508829300313845}
   - component: {fileID: 3470328591823883055}
   - component: {fileID: 3780585668096543551}
-  - component: {fileID: 5855647703498626397}
+  - component: {fileID: 8717671681029024601}
   - component: {fileID: 8913334084661373530}
   - component: {fileID: 8142513987967146894}
   m_Layer: 6
@@ -49,12 +49,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f273af236e4ed7ae9e1bf5114c4f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _killAction: 1
   _velocity: {x: 1.5, y: 3}
   _maxVelocity: 10
   _level: 0
   _levelCount: 3
   _childCount: 2
-  _childMaxAngleScatter: 120
+  _childMaxAngleScatter: 150
 --- !u!114 &3780585668096543551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba914d9ea9f94694bc994a672ea041cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5855647703498626397
+--- !u!114 &8717671681029024601
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
